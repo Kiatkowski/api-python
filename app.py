@@ -61,12 +61,15 @@ def incluir_novo_livro():
 
     return jsonify(livros)
 
+
 # Delete - excluir um livro
+@app.route("/livros/<int:id>", methods=["DELETE"])
 def excluir_livro(id):
     # Como é necessário excluir um elemento da lista pelo seu indice, será utilizado novamente o enumerate()
     for indice, livro in enumerate(livros):
         if livro.get("id") == id:
             livros.pop(indice)
+            return jsonify(livros)
 
 # INICIALIZAÇÃO DO SERVIDOR LOCAL
 app.run(host="localhost", port=6767, debug=True)
